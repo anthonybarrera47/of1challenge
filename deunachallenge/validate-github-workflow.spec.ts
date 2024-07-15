@@ -11,7 +11,7 @@ test('Validate GitHub Actions Workflow', async () => {
     expect(workflowContent).toContain('on:');
     expect(workflowContent).toContain('pull_request:');
     expect(workflowContent).toContain('branches:');
-    expect(workflowContent).toContain('main');
+    expect(workflowContent).toContain('master');
     expect(workflowContent).toContain('jobs:');
     expect(workflowContent).toContain('runs-on: ubuntu-latest');
     expect(workflowContent).toContain('steps:');

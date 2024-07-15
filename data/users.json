@@ -1,0 +1,34 @@
+{
+  "users": [
+    {
+      "firstName": "Anthony Manuel",
+      "lastName": "Barrera Hidalgo",
+      "streetAddress": "C/ La enea #1, Las guaranas",
+      "city": "San Francisco de Macoris, Duarte",
+      "state": "Texas",
+      "postalCode": "31000",
+      "country": "United States",
+      "phoneNumber": "8299359510"
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "streetAddress": "123 Main St",
+      "city": "Springfield",
+      "state": "Texas",
+      "postalCode": "62701",
+      "country": "United States",
+      "phoneNumber": "2175551234"
+    },
+    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "streetAddress": "456 Elm St",
+      "city": "Shelbyville",
+      "state": "Texas",
+      "postalCode": "46176",
+      "country": "United States",
+      "phoneNumber": "3175555678"
+    }
+  ]
+}

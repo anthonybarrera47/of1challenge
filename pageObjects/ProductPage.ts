@@ -9,29 +9,29 @@ export class ProductPage {
 
     async addToCart() {
         // Seleccionar el primer producto de la lista
-        const productElements = await this.page.$$('.products.list.items.product-items .item.product.product-item');
+        const productElements = await this.page.locator('.products.list.items.product-items .item.product.product-item').first();
 
         // Verificar que haya productos en la lista
-        if (productElements.length > 0) {
-            const firstProductElement = productElements[0];
+        if (await productElements.isVisible()) {
+            const firstProductElement = productElements;
             // Hacer hover sobre el primer producto
             await firstProductElement.hover();
             // Seleccionar el primer tamaño
-            const firstSizeOption = await firstProductElement.$('.swatch-attribute.size .swatch-option');
-            if (firstSizeOption) {
+            const firstSizeOption = await firstProductElement.locator('.swatch-attribute.size .swatch-option').first();
+            if (firstSizeOption.isVisible()) {
                 await firstSizeOption.click();
             } else {
                 throw new Error('No size options found for the first product');
             }
             // Seleccionar el primer color
-            const firstColorOption = await firstProductElement.$('.swatch-attribute.color .swatch-option');
-            if (firstColorOption) {
+            const firstColorOption = await firstProductElement.locator('.swatch-attribute.color .swatch-option').first();
+            if (firstColorOption.isVisible()) {
                 await firstColorOption.click();
             } else {
                 throw new Error('No color options found for the first product');
             }
             // Buscar el botón "Add to Cart" dentro del primer producto
-            const addToCartButton = await firstProductElement.$('text=Add to Cart');
+            const addToCartButton = await firstProductElement.locator('text=Add to Cart').first();
 
             // Verificar que el botón "Add to Cart" exista y sea visible
             if (addToCartButton) {

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { HomePage } from '../pageObjects/HomePage';
 import { ProductPage } from '../pageObjects/ProductPage';
 import { CartPage } from '../pageObjects/CartPage';
@@ -50,5 +50,5 @@ test('complete purchase flow', async ({ page }) => {
     );
 
     await checkoutPage.placeOrder();
-
+    await checkoutPage.validateOrderCompletionMessage();
 });

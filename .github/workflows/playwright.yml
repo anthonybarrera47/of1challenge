@@ -10,19 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
         with:
-          node-version: '16'
+          fetch-depth: 0  # Fetch all history for better caching
 
-      - name: Install dependencies
-        run: npm install
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
 
       - name: Install Playwright browsers
         run: npx playwright install
 
+      - name: Install Playwright Dependency
+        run: npx playwright install-deps
+
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          CI: true  # Required by some test frameworks
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: test-results
